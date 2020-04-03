@@ -9,6 +9,15 @@ public class PlayerUIManager : MonoBehaviour
     public GameObject pauseBackground;
 
     public Text staminaLabel;
+    //+
+    public Text timerText;
+    public float mainTimer = 0;
+    private float timer;
+    private bool canCount = true;
+    private bool doOnce = false;
+    
+    //+
+    private LevelManager m_levelManger;
 
     public GameObject dropButtonContainer;
 
@@ -16,6 +25,9 @@ public class PlayerUIManager : MonoBehaviour
 
     public void Start()
     {
+        //+
+        timer = mainTimer;
+
         // Recuperation PlayerManager
         m_PlayerManager = FindObjectOfType<PlayerManager>();
         if (m_PlayerManager)
@@ -33,7 +45,7 @@ public class PlayerUIManager : MonoBehaviour
             }
         }
     }
-
+        
     private void InitPopButton(PopButton button, int index, EntityData data)
     {
         // Save index de l'entité qu'on droppera
@@ -56,6 +68,21 @@ public class PlayerUIManager : MonoBehaviour
     public void Update()
     {
         UpdateStaminaContent();
+        //+
+        //timer
+        if(timer >= 0.0f && canCount)
+        {
+            timer -= Time.deltaTime;
+            timerText.text = timer.ToString("f");
+        }
+        else if (timer <= 0.0f && !doOnce)
+        {
+            canCount = false;
+            doOnce = true;
+            timerText.text = "0.00";
+            timer = 0.0f;
+            m_levelManger = FindObjectOfType<LevelManager>();
+        }
     }
 
     private void UpdateStaminaContent()

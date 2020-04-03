@@ -12,6 +12,9 @@ public class MapManager : MonoBehaviour
     // Variable de Data.
     public MapData mapData;
 
+    //+
+    public EntityManager entityManager;
+
     // Variables de vues & NavMesh.
     [Header("View Var")]
     public bool generateView = true;
@@ -34,11 +37,22 @@ public class MapManager : MonoBehaviour
     public void Awake()
     {
         CreateFeebBackContainer();
-
         SetAlignementZone(Alignment.Player, Vector3.zero, mapData.width, mapData.height / 2);
 
         SetAlignementZone(Alignment.IA, new Vector3(0, 0, mapData.height / 2 + 1), mapData.width, mapData.height / 2);
+
+        OutPostZoneDestroy();
     }
+    //+
+    //gagne une zone
+    private void OutPostZoneDestroy()
+    {
+        if (entityManager.outPostIAL)
+        {
+            SetAlignementZone(Alignment.Player, new Vector3(0, 0, mapData.height / 2 + 1), mapData.width, mapData.height / 2);
+        }
+    }
+
 
     #region CREATE MAP
     [ContextMenu("InitializeMapRandomly")]
@@ -190,7 +204,7 @@ public class MapManager : MonoBehaviour
         UpdateViewAlignement(alignment, indexSquare);
     }
 
-    private void SetAlignementZone(Alignment alignment, Vector3 origin, int width, int height)
+    public void SetAlignementZone(Alignment alignment, Vector3 origin, int width, int height)
     {
         Vector3 tmpPos = origin;
         for(int i = 0; i < width; i++)

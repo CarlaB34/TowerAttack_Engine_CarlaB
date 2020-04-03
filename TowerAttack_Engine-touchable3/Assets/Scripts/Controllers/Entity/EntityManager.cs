@@ -10,7 +10,21 @@ public class EntityManager : SingletonMono<EntityManager>
     // Ref vers la global target des entités IA
     public GameObject towerPlayer;
 
+    ///+ //OutPost du player
+  
+    public GameObject outPostPlayerR;
+    public GameObject outPostPlayerL;
+    //OutPost du IA
+    public GameObject outPostIAR;
+    public GameObject outPostIAL;
+    //public MapData mapData;
+    private MapManager m_mapManger;
+
+    /// 
+
     public Action<Alignment> OnTowerDestroy;
+
+ 
 
     public void PopElementFromData(EntityData entityData, Vector3 position)
     {
@@ -37,6 +51,15 @@ public class EntityManager : SingletonMono<EntityManager>
             Debug.LogError("NO POOLED PREFAB : " + prefabToPop.name);
         }
     }
+
+    //+ //prendre zone apres outpost détruit
+    /*private void OutPostZoneDestroy()
+    {
+        if(outPostIAL)
+        {
+            m_mapManger = FindObjectOfType<MapManager>().SetAlignementZone(Alignment.Player, new Vector3(0, 0, mapData.height / 2 + 1), mapData.width, mapData.height / 2);
+        }
+    }*/
 
 
     // Fonction centrale.
@@ -71,7 +94,6 @@ public class EntityManager : SingletonMono<EntityManager>
         {
             OnTowerDestroy?.Invoke(Alignment.IA);
         }
-
-        PoolManager.Instance.PoolElement(toPool);
+            PoolManager.Instance.PoolElement(toPool);
     }
 }

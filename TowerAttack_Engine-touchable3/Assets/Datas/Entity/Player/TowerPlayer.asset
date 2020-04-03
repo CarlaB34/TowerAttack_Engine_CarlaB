@@ -19,7 +19,7 @@ MonoBehaviour:
   nbrEntityAtPop: 0
   isAttackEntity: 1
   typeTarget: 1
-  damageAttack: 1
+  damageAttack: 2
   rangeDetect: 3
   isProjectileAttack: 1
   prefabProjectile: {fileID: 2047398191264613396, guid: 874f6c1d26ea70e43927265c60816ae0,

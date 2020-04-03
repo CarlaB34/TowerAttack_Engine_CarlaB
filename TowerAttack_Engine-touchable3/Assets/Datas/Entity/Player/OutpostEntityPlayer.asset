@@ -10,22 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dfb749d369f1a2147b306d432aa66a42, type: 3}
-  m_Name: TowerMonster
+  m_Name: OutpostEntityPlayer
   m_EditorClassIdentifier: 
   debugColor: {r: 0, g: 0, b: 0, a: 0}
-  alignment: 1
-  startLife: 20
+  alignment: 2
+  startLife: 10
   popAmount: 0
   nbrEntityAtPop: 0
   isAttackEntity: 1
-  typeTarget: 2
-  damageAttack: 2
+  typeTarget: 1
+  damageAttack: 1
   rangeDetect: 3
-  isProjectileAttack: 0
-  prefabProjectile: {fileID: 0}
-  timeWaitNextAttack: 1
-  isCreatorEntity: 1
-  toCreate: {fileID: 5511027981521120475, guid: 5b6000fef574e7f4f8935a06b360ff4f,
+  isProjectileAttack: 1
+  prefabProjectile: {fileID: 2047398191264613396, guid: 874f6c1d26ea70e43927265c60816ae0,
     type: 3}
-  nbrToCreate: 4
-  timeWaitNextCreate: 5
+  timeWaitNextAttack: 1
+  isCreatorEntity: 0
+  toCreate: {fileID: 0}
+  nbrToCreate: 1
+  timeWaitNextCreate: 1
