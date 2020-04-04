@@ -49,9 +49,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entityData: {fileID: 11400000, guid: f6cd15af7de86464798335afc5cc976a, type: 2}
-  m_CurrentLife: 1
+  m_CurrentLife: 5
   attackContainer: {fileID: 8419466628222810483}
-  entityMoveableData: {fileID: 11400000, guid: f6cd15af7de86464798335afc5cc976a, type: 2}
   globalTarget: {fileID: 0}
 --- !u!54 &8419466628137860282
 Rigidbody:

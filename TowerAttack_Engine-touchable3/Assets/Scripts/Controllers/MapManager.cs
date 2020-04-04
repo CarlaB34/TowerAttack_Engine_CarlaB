@@ -14,6 +14,7 @@ public class MapManager : MonoBehaviour
 
     //+
     public EntityManager entityManager;
+    public EntityData entityData;
 
     // Variables de vues & NavMesh.
     [Header("View Var")]
@@ -41,15 +42,20 @@ public class MapManager : MonoBehaviour
 
         SetAlignementZone(Alignment.IA, new Vector3(0, 0, mapData.height / 2 + 1), mapData.width, mapData.height / 2);
 
-        OutPostZoneDestroy();
+      //  OutPostZoneDestroy();
     }
     //+
     //gagne une zone
-    private void OutPostZoneDestroy()
+    //OutPostZoneDestroy() a la place de update
+    private void Update(GameObject outPostIAL)
     {
-        if (entityManager.outPostIAL)
+        if (entityManager.outPostIAL = outPostIAL) 
         {
-            SetAlignementZone(Alignment.Player, new Vector3(0, 0, mapData.height / 2 + 1), mapData.width, mapData.height / 2);
+            if(outPostIAL.entityData.startLife = 0)
+            {
+                SetAlignementZone(Alignment.Player, new Vector3(0, 0, mapData.height / 2 + 1), mapData.width, mapData.height / 2);
+            }
+            
         }
     }
 

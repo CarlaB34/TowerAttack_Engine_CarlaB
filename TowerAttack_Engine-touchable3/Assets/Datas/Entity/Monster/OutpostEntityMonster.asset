@@ -19,14 +19,14 @@ MonoBehaviour:
   nbrEntityAtPop: 0
   isAttackEntity: 1
   typeTarget: 2
-  damageAttack: 1
+  damageAttack: 3
   rangeDetect: 3
   isProjectileAttack: 0
   prefabProjectile: {fileID: 2047398191264613396, guid: 874f6c1d26ea70e43927265c60816ae0,
     type: 3}
   timeWaitNextAttack: 1
-  isCreatorEntity: 1
+  isCreatorEntity: 0
   toCreate: {fileID: 5511027981521120475, guid: 5b6000fef574e7f4f8935a06b360ff4f,
     type: 3}
   nbrToCreate: 1
-  timeWaitNextCreate: 3
+  timeWaitNextCreate: 6

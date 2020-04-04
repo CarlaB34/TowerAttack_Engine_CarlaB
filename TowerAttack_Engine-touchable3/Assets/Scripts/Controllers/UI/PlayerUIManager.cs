@@ -11,13 +11,8 @@ public class PlayerUIManager : MonoBehaviour
     public Text staminaLabel;
     //+
     public Text timerText;
-    public float mainTimer = 0;
-    private float timer;
-    private bool canCount = true;
-    private bool doOnce = false;
-    
-    //+
-    private LevelManager m_levelManger;
+    //2 minutes
+     public float totalTime = 60f; 
 
     public GameObject dropButtonContainer;
 
@@ -25,8 +20,6 @@ public class PlayerUIManager : MonoBehaviour
 
     public void Start()
     {
-        //+
-        timer = mainTimer;
 
         // Recuperation PlayerManager
         m_PlayerManager = FindObjectOfType<PlayerManager>();
@@ -65,23 +58,40 @@ public class PlayerUIManager : MonoBehaviour
         image.color = data.debugColor;
     }
 
+
     public void Update()
     {
         UpdateStaminaContent();
-        //+
-        //timer
-        if(timer >= 0.0f && canCount)
+
+        //+//timer
+        totalTime -= Time.deltaTime;
+        UpdateTimer(totalTime);
+    }
+
+    //+ timer
+    public void UpdateTimer(float totalSeconds)
+    {
+        int minutes = Mathf.FloorToInt(totalSeconds / 60f);
+        int seconds = Mathf.RoundToInt(totalSeconds % 60f);
+
+        string formatedSeconds = seconds.ToString();
+
+        if (seconds == 60)
         {
-            timer -= Time.deltaTime;
-            timerText.text = timer.ToString("f");
+            seconds = 0;
+            minutes = 1;
         }
-        else if (timer <= 0.0f && !doOnce)
+
+        timerText.text = minutes.ToString("00") + ":" + seconds.ToString("00");
+      
+        //timer arrive a zero on passe dans endGame
+        if (minutes < 0)
         {
-            canCount = false;
-            doOnce = true;
-            timerText.text = "0.00";
-            timer = 0.0f;
-            m_levelManger = FindObjectOfType<LevelManager>();
+            LevelManager m_levelManager = FindObjectOfType<LevelManager>();
+            m_levelManager.EndGame(Alignment.Neutral);
+
+            //reset quand la tour principal meurt 
+            totalTime = 0;
         }
     }
 

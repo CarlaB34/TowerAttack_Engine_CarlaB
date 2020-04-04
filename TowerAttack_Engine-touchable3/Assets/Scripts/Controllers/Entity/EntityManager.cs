@@ -17,7 +17,7 @@ public class EntityManager : SingletonMono<EntityManager>
     //OutPost du IA
     public GameObject outPostIAR;
     public GameObject outPostIAL;
-    //public MapData mapData;
+   // public MapData mapData;
     private MapManager m_mapManger;
 
     /// 
@@ -60,7 +60,7 @@ public class EntityManager : SingletonMono<EntityManager>
             m_mapManger = FindObjectOfType<MapManager>().SetAlignementZone(Alignment.Player, new Vector3(0, 0, mapData.height / 2 + 1), mapData.width, mapData.height / 2);
         }
     }*/
-
+    
 
     // Fonction centrale.
     // Toute instantiation d'entité doit passer par cette fonction.
@@ -74,11 +74,13 @@ public class EntityManager : SingletonMono<EntityManager>
         {
             if (moveable.entityData.alignment == Alignment.IA)
             {
+
                 moveable.SetGlobalTarget(towerPlayer);
             }
             else if (moveable.entityData.alignment == Alignment.Player)
             {
-                moveable.SetGlobalTarget(towerIA);
+         
+                 moveable.SetGlobalTarget(towerIA);
             }
             entity.RestartEntity();
         }

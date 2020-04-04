@@ -27,5 +27,5 @@ MonoBehaviour:
   isCreatorEntity: 1
   toCreate: {fileID: 5511027981521120475, guid: 5b6000fef574e7f4f8935a06b360ff4f,
     type: 3}
-  nbrToCreate: 4
+  nbrToCreate: 1
   timeWaitNextCreate: 5
