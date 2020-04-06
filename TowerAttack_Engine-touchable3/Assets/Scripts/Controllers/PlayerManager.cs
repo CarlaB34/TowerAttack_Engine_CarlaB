@@ -77,7 +77,7 @@ public class PlayerManager : MonoBehaviour
     #region DROP ENTITY
     private void SetCurrentIndex(int index = -1)
     {
-        // Increment Index poru passer à l'entité suivante
+        // Increment Index pour passer à l'entité suivante
         m_CurrentIndex = index;
 
         // si l'index est superieur aux nombres d'entité présentent dans le deck

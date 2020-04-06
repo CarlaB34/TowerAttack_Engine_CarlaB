@@ -11,8 +11,8 @@ public class PlayerUIManager : MonoBehaviour
     public Text staminaLabel;
     //+
     public Text timerText;
-    //2 minutes
-     public float totalTime = 60f; 
+    //3 minutes
+     public float totalTime = 180f; 
 
     public GameObject dropButtonContainer;
 
@@ -79,13 +79,13 @@ public class PlayerUIManager : MonoBehaviour
         if (seconds == 60)
         {
             seconds = 0;
-            minutes = 1;
+            minutes += 1;
         }
 
         timerText.text = minutes.ToString("00") + ":" + seconds.ToString("00");
       
         //timer arrive a zero on passe dans endGame
-        if (minutes < 0)
+        if (minutes <= 0)
         {
             LevelManager m_levelManager = FindObjectOfType<LevelManager>();
             m_levelManager.EndGame(Alignment.Neutral);

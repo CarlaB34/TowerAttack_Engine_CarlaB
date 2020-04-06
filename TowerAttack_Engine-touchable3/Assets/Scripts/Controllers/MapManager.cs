@@ -14,7 +14,7 @@ public class MapManager : MonoBehaviour
 
     //+
     public EntityManager entityManager;
-    public EntityData entityData;
+    //public EntityData entityData;
 
     // Variables de vues & NavMesh.
     [Header("View Var")]
@@ -41,21 +41,25 @@ public class MapManager : MonoBehaviour
         SetAlignementZone(Alignment.Player, Vector3.zero, mapData.width, mapData.height / 2);
 
         SetAlignementZone(Alignment.IA, new Vector3(0, 0, mapData.height / 2 + 1), mapData.width, mapData.height / 2);
-
-      //  OutPostZoneDestroy();
     }
     //+
     //gagne une zone
-    //OutPostZoneDestroy() a la place de update
-    private void Update(GameObject outPostIAL)
+    private void Update()
     {
-        if (entityManager.outPostIAL = outPostIAL) 
+        //si la tour gauche ennemi est prise
+        if (!entityManager.outPostIAL)
         {
-            if(outPostIAL.entityData.startLife = 0)
-            {
-                SetAlignementZone(Alignment.Player, new Vector3(0, 0, mapData.height / 2 + 1), mapData.width, mapData.height / 2);
-            }
-            
+            //prend la moitier gauche de la zone ennemi en laissant les lignes au extrémité (bord gauche, bord gauche fond) non prise
+            SetAlignementZone(Alignment.Player, new Vector3(1, 0, mapData.height / 2), mapData.width / 2, mapData.height / 2);
+
+        }
+
+        //si la tour droite ennemi est prise
+        if (!entityManager.outPostIAR)
+        {
+            //prend la moitier droite de la zone ennemien en laissant les lignes au extrémité (bord droit, bord droit fond) non prise
+            SetAlignementZone(Alignment.Player, new Vector3(7, 0, mapData.height/2), mapData.width/2-1, mapData.height/2);
+
         }
     }
 
@@ -304,7 +308,6 @@ public class MapManager : MonoBehaviour
     private void InitializeSquareGridPercentWall()
     {
         mapData.grid = new SquareData[mapData.width * mapData.height];
-
         // Parcours des square pour générer aléatoirement un state.
         for (int i = 0; i < mapData.grid.Length; i++)
         {

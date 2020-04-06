@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debugColor: {r: 0, g: 0, b: 0, a: 0}
   alignment: 1
-  startLife: 10
+  startLife: 5
   popAmount: 0
   nbrEntityAtPop: 0
   isAttackEntity: 1

@@ -17,14 +17,12 @@ public class EntityManager : SingletonMono<EntityManager>
     //OutPost du IA
     public GameObject outPostIAR;
     public GameObject outPostIAL;
-   // public MapData mapData;
+    // +moveable
+    public Transform other;
+    // public MapData mapData;
     private MapManager m_mapManger;
 
-    /// 
-
     public Action<Alignment> OnTowerDestroy;
-
- 
 
     public void PopElementFromData(EntityData entityData, Vector3 position)
     {
@@ -51,15 +49,6 @@ public class EntityManager : SingletonMono<EntityManager>
             Debug.LogError("NO POOLED PREFAB : " + prefabToPop.name);
         }
     }
-
-    //+ //prendre zone apres outpost détruit
-    /*private void OutPostZoneDestroy()
-    {
-        if(outPostIAL)
-        {
-            m_mapManger = FindObjectOfType<MapManager>().SetAlignementZone(Alignment.Player, new Vector3(0, 0, mapData.height / 2 + 1), mapData.width, mapData.height / 2);
-        }
-    }*/
     
 
     // Fonction centrale.
@@ -73,14 +62,25 @@ public class EntityManager : SingletonMono<EntityManager>
         if (entity is EntityMoveable moveable)
         {
             if (moveable.entityData.alignment == Alignment.IA)
-            {
-
+            {  
                 moveable.SetGlobalTarget(towerPlayer);
             }
             else if (moveable.entityData.alignment == Alignment.Player)
             {
-         
-                 moveable.SetGlobalTarget(towerIA);
+                moveable.SetGlobalTarget(towerIA);
+                //+ test de move vers l'outpost puis la tour, ne marche pas
+                //si c'est un outpost
+                //if (outPostIAL)
+                //{
+                //    moveable.SetGlobalTarget(outPostIAL);
+                //}
+                ////si c'est une tour et si l'outpost est détruit
+                //else if (towerIA && !outPostIAL)
+                //{
+
+                //    moveable.SetGlobalTarget(towerIA);
+                //}
+
             }
             entity.RestartEntity();
         }
